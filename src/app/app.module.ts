@@ -8,7 +8,7 @@ import { RegisterComponent } from './components/authorisation/register/register.
 import { ChatWindowComponent } from './components/Messages/chat-window/chat-window.component';
 import { ChatListComponent } from './components/Messages/chat-list/chat-list.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
@@ -33,6 +33,7 @@ import { environment } from '../environments/environment';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    ReactiveFormsModule,
   ],
   providers: [AppService],
   bootstrap: [AppComponent]
