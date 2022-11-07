@@ -1,192 +1,70 @@
-Skip to content Product Solutions Open Source Pricing Search Sign in Sign up
-creativetimofficial / tailwind-starter-kit Public Code Issues 15 Pull requests 5
-Actions Projects Security Insights tailwind-starter-kit/Dashboard
-Page/angular-dashboard-page/src/app/components/sidebar/sidebar.component.html
-@einazare einazare refactor: update to tailwind v2 Latest commit f0ef435 on Mar
-23, 2021 History 1 contributor 188 lines (188 sloc) 7.02 KB
-
-<nav
-  class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6"
->
-  <div
-    class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto"
-  >
-    <!-- Toggler -->
-    <button
-      class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
-      type="button"
-      (click)="toggleCollapseShow('bg-white m-2 py-3 px-6')"
-    >
-      <i class="fas fa-bars"></i>
-    </button>
-    <!-- Brand -->
-    <a
-      class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-      href="javascript:void(0)"
-    >
-      Tailwind Starter Kit
-    </a>
-    <!-- User -->
-    <ul class="md:hidden items-center flex flex-wrap list-none">
-      <li class="inline-block relative">
-        <!-- <app-notification-dropdown></app-notification-dropdown> -->
-      </li>
-      <li class="inline-block relative">
-        <!-- <app-user-dropdown></app-user-dropdown> -->
-      </li>
-    </ul>
-    <!-- Collapse -->
+<section class="h-screen">
+  <div class="px-6 h-full text-gray-800">
     <div
-      class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded"
-      [ngClass]="collapseShow"
+      class="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6"
     >
-      <!-- Collapse header -->
       <div
-        class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200"
+        class="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0"
       >
-        <div class="flex flex-wrap">
-          <div class="w-6/12">
-            <a
-              class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-              href="javascript:void(0)"
-            >
-              Tailwind Starter Kit
-            </a>
+        <img
+          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="w-full"
+          alt="Sample image"
+        />
+      </div>
+      <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
+        <form>
+          <!-- Email input -->
+          <div class="mb-6">
+            <input
+              type="text"
+              class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              id="exampleFormControlInput2"
+              placeholder="Email address"
+            />
           </div>
-          <div class="w-6/12 flex justify-end">
+
+          <!-- Password input -->
+          <div class="mb-6">
+            <input
+              type="password"
+              class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              id="exampleFormControlInput2"
+              placeholder="Password"
+            />
+          </div>
+
+          <!-- <div class="flex justify-between items-center mb-6">
+            <div class="form-group form-check">
+              <input
+                type="checkbox"
+                class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                id="exampleCheck2"
+              />
+              <label class="form-check-label inline-block text-gray-800" for="exampleCheck2"
+                >Remember me</label
+              >
+            </div>
+            <a href="#!" class="text-gray-800">Forgot password?</a>
+          </div> -->
+
+          <div class="text-center lg:text-left">
             <button
               type="button"
-              class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
-              (click)="toggleCollapseShow('hidden')"
+              class="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
             >
-              <i class="fas fa-times"></i>
+              Login
             </button>
+            <p class="text-sm font-semibold mt-2 pt-1 mb-0">
+              Don't have an account?
+              <a
+                 [routerLink]="['/register']" class="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
+                >Register</a
+              >
+            </p>
           </div>
-        </div>
+        </form>
       </div>
-      <!-- Form -->
-      <form class="mt-6 mb-4 md:hidden">
-        <div class="mb-3 pt-0">
-          <input
-            type="text"
-            placeholder="Search"
-            class="border-0 px-3 py-2 h-12 border border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
-          />
-        </div>
-      </form>
-      <!-- Navigation -->
-      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
-        <li class="items-center">
-          <a
-            class="text-pink-500 hover:text-pink-600 text-xs uppercase py-3 font-bold block"
-            href="#/dashboard"
-            ><i class="fas fa-tv opacity-75 mr-2 text-sm"></i> Dashboard</a
-          >
-        </li>
-        <li class="items-center">
-          <a
-            class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-            href="#/landing"
-            ><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
-            Landing Page</a
-          >
-        </li>
-        <li class="items-center">
-          <a
-            class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-            href="#/profile"
-            ><i class="fas fa-user-circle text-blueGray-400 mr-2 text-sm"></i>
-            Profile Page</a
-          >
-        </li>
-        <li class="items-center">
-          <a
-            class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-            href="#/login"
-            ><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
-            Login</a
-          >
-        </li>
-        <li class="items-center">
-          <a
-            class="text-blueGray-300 text-xs uppercase py-3 font-bold block"
-            href="#pablo"
-            ><i
-              class="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"
-            ></i>
-            Register (soon)</a
-          >
-        </li>
-        <li class="items-center">
-          <a
-            class="text-blueGray-300 text-xs uppercase py-3 font-bold block"
-            href="#pablo"
-            ><i class="fas fa-tools text-blueGray-300 mr-2 text-sm"></i>
-            Settings (soon)</a
-          >
-        </li>
-      </ul>
-      <!-- Divider -->
-      <hr class="my-4 md:min-w-full" />
-      <!-- Heading -->
-      <h6
-        class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
-      >
-        Documentation
-      </h6>
-      <!-- Navigation -->
-      <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-        <li class="inline-flex">
-          <a
-            class="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
-            href="#/documentation/styles"
-            ><i class="fas fa-paint-brush mr-2 text-blueGray-400 text-base"></i>
-            Styles</a
-          >
-        </li>
-        <li class="inline-flex">
-          <a
-            class="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
-            href="#/documentation/alerts"
-            ><i class="fab fa-css3-alt mr-2 text-blueGray-400 text-base"></i>
-            CSS Components</a
-          >
-        </li>
-        <li class="inline-flex">
-          <a
-            class="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
-            href="#/documentation/vue/alerts"
-            ><i class="fab fa-vuejs mr-2 text-blueGray-400 text-base"></i>
-            VueJS</a
-          >
-        </li>
-        <li class="inline-flex">
-          <a
-            class="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
-            href="#/documentation/react/alerts"
-            ><i class="fab fa-react mr-2 text-blueGray-400 text-base"></i>
-            React</a
-          >
-        </li>
-        <li class="inline-flex">
-          <a
-            class="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
-            href="#/documentation/angular/alerts"
-            ><i class="fab fa-angular mr-2 text-blueGray-400 text-base"></i>
-            Angular</a
-          >
-        </li>
-        <li class="inline-flex">
-          <a
-            class="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
-            href="#/documentation/javascript/alerts"
-            ><i class="fab fa-js-square mr-2 text-blueGray-400 text-base"></i>
-            Javascript</a
-          >
-        </li>
-      </ul>
     </div>
   </div>
-</nav>
-Footer © 2022 GitHub, Inc. Footer navigation Terms Privacy Security Status Docs
-Contact GitHub Pricing API Training Blog About
+</section>
