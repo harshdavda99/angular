@@ -102,5 +102,8 @@
       }
     }
   },
-  "defaultProject": "Fire-store"
+  "defaultProject": "Fire-store",
+  "cli": {
+    "analytics": false
+  }
 }
