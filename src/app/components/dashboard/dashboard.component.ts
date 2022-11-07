@@ -6,12 +6,18 @@ import {AppService } from '../../app.service'
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  userslist: any;
 
   constructor(private App_service :AppService) { }
 
   ngOnInit(): void {
-    let list = this.App_service.getUser('harshdavda99@gmail.com');
-    console.log('list', list)
+    this.App_service.getUser('harshdavda99@gmail.com').then((querySnapshot) => {
+      const tempDoc = querySnapshot.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() }
+      })
+      this.userslist = tempDoc;
+      console.log('list',this.userslist )
+    });
   }
 
 }

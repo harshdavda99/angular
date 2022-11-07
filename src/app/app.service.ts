@@ -21,6 +21,6 @@ export class AppService {
   }
 
   async getUser(Email: string) {
-    return await this.FireDatabase.firestore.collection('Users').where('Email', ('!='), Email).get();
+    return await this.FireDatabase.firestore.collection('Users').where('Email', ('!='), Email).get()
   }
 }
