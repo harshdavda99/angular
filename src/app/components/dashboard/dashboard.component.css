@@ -23,3 +23,13 @@
       --tw-translate-x: 0;
   }
 }
+.listheight{
+  min-height: 12rem;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;
+}
