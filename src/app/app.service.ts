@@ -20,7 +20,11 @@ export class AppService {
     return await this.Fireservice.signInWithEmailAndPassword(Email, password);
   }
 
-  async getUser(Email: string) {
+  async getUsers(Email: string) {
     return await this.FireDatabase.firestore.collection('Users').where('Email', ('!='), Email).get()
+  }
+
+  async getUser(Email: string) {
+    return await this.FireDatabase.firestore.collection('Users').where('Email', ('=='), Email).get()
   }
 }

@@ -8,7 +8,7 @@ import { AppService } from 'src/app/app.service';
 export class ChatListComponent implements OnInit {
   userslist: any;
 
-  constructor(private App_service: AppService) { 
+  constructor(private App_service: AppService) {
     this.getUserList();
 
   }
@@ -18,12 +18,11 @@ export class ChatListComponent implements OnInit {
   }
 
   getUserList(){
-    this.App_service.getUser('harshdavda99@gmail.com').then((querySnapshot) => {
-      const tempDoc = querySnapshot.docs.map((doc) => {
+    this.App_service.getUsers('harshdavda99@gmail.com').then((querySnapshot) => {
+      const tempDoc = querySnapshot.docs.map((doc: any) => {
         return { id: doc.id, ...doc.data() }
       })
       this.userslist = tempDoc;
-      console.log('list',this.userslist )
     });
   }
 
