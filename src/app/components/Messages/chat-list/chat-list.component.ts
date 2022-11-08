@@ -7,14 +7,18 @@ import { AppService } from 'src/app/app.service';
 })
 export class ChatListComponent implements OnInit {
   userslist: any;
+  ProfileData: any;
 
   constructor(private App_service: AppService) {
     this.getUserList();
+    let data = sessionStorage.getItem('userDetails');
+    this.ProfileData = JSON.parse(JSON.stringify(data))
 
   }
 
   ngOnInit(): void {
     this.getUserList();
+    console.log(this.ProfileData)
   }
 
   getUserList(){

@@ -12,8 +12,12 @@ export class AppService {
     return await this.Fireservice.createUserWithEmailAndPassword(Email, password);
   }
 
-  async AdduserDetaials(data: string) {
+  async AdduserDetaials(data: any) {
     return await this.FireDatabase.collection('Users').add(data);
+  }
+
+  async AdduserDetaialsMessages(data: any) {
+    return await this.FireDatabase.collection('message').add(data);
   }
 
   async LoginUser(Email: string, password: string) {

@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
             return { id: doc.id, ...doc.data() }
           })
           if(tempDoc[0]){
-            sessionStorage.setItem("userDetails", tempDoc[0]);
+            sessionStorage.setItem("userDetails", JSON.stringify(tempDoc[0]));
             this.route.navigateByUrl('/dashboard');
           }
         });
