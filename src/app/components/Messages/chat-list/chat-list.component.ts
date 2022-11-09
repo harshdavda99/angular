@@ -22,7 +22,7 @@ export class ChatListComponent implements OnInit {
   }
 
   getUserList(){
-    this.App_service.getUsers('harshdavda99@gmail.com').then((querySnapshot) => {
+    this.App_service.getUsers(this.ProfileData?.Email).then((querySnapshot) => {
       const tempDoc = querySnapshot.docs.map((doc: any) => {
         return { id: doc.id, ...doc.data() }
       })
