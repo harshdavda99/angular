@@ -29,12 +29,4 @@ export class ChatListComponent implements OnInit {
       this.userslist = tempDoc;
     });
   }
-
-  chatbox(data :any){
-    console.log('data', data);
-    if(data?.uid){
-        this.route.navigateByUrl(`/chatbox/${data?.uid}`);
-    }
-  }
-
 }
