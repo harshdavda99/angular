@@ -31,4 +31,9 @@ export class AppService {
   async getUser(Email: string) {
     return await this.FireDatabase.firestore.collection('Users').where('Email', ('=='), Email).get()
   }
+
+  async getchatdata(uid: string) {
+    return await this.FireDatabase.firestore.collection('message').where('uid', ('=='), uid).get()
+  }
+
 }
