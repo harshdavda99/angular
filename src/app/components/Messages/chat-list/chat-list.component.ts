@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/app.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-chat-list',
   templateUrl: './chat-list.component.html',
@@ -9,11 +10,10 @@ export class ChatListComponent implements OnInit {
   userslist: any;
   ProfileData: any;
 
-  constructor(private App_service: AppService) {
+  constructor(private App_service: AppService, private route: Router ) {
     this.getUserList();
-    let data = sessionStorage.getItem('userDetails');
-    this.ProfileData = JSON.parse(JSON.stringify(data))
-
+    let data = JSON.parse(`${sessionStorage.getItem("userDetails")}`)
+    this.ProfileData = data
   }
 
   ngOnInit(): void {
@@ -28,6 +28,13 @@ export class ChatListComponent implements OnInit {
       })
       this.userslist = tempDoc;
     });
+  }
+
+  chatbox(data :any){
+    console.log('data', data);
+    if(data?.uid){
+        this.route.navigateByUrl(`/chatbox/${data?.uid}`);
+    }
   }
 
 }
