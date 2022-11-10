@@ -15,6 +15,14 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = {
+	url: environment.socket_url, // socket server url;
+	options: {
+		transports: ['websocket']
+	}
+}
 
 @NgModule({
   declarations: [
@@ -29,6 +37,7 @@ import { environment } from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    SocketIoModule.forRoot(config),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,

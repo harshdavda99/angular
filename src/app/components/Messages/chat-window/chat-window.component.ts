@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router , ActivatedRoute } from '@angular/router';
 import { FormBuilder,  FormGroup } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
-
+import { WebsocketService } from 'src/app/websocket.service'
 
 @Component({
   selector: 'app-chat-window',
@@ -16,7 +16,7 @@ export class ChatWindowComponent implements OnInit {
   messagelist: any [];
   receiverProfile: any;
 
-  constructor(private App_service: AppService, private fb:FormBuilder,  private route : Router, private active: ActivatedRoute) {
+  constructor(private App_service: AppService, private fb:FormBuilder,  private route : Router, private active: ActivatedRoute, private socketService: WebsocketService) {
     this.myForm = this.fb.group({
       message:'',
       time_stamp: '',
@@ -33,12 +33,15 @@ export class ChatWindowComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getreceiverprofile();
+   
       this.senderData();
       this.receiverData();
    
       setTimeout(() =>{
         let arraylist = [].concat.apply([],this.messagelist)
         this.messagelist = arraylist.sort((a:any,b:any) => a.time_stamp - b.time_stamp);
+        this.socketService.fetchMessages();
+        this.socketService.onFetchMessages().subscribe((data: any) => this.messagelist = data);
       }, 2000);
   }
   
@@ -86,6 +89,9 @@ receiverData(){
     this.App_service.AdduserDetaialsMessages(messagedata).then((msg_added: any) => {
       if(msg_added){
         this.myForm.reset();
+        this.senderData();
+        this.socketService.fetchMessages();
+        this.socketService.onFetchMessages().subscribe((data: any) => this.messagelist = data);
       }
     })
   }
