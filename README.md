@@ -1,3 +1,42 @@
+here socket io should be run in local using the following git source code. https://github.com/harshdavda99/socketio
+                                                                           npm start
+                                                                           
+and for chatweb vercel link is available >>>>>>  https://angularlivechat.vercel.app/
+
+For nodejs storing data  and getting data from database
+using this URL    >>>> https://nodedemo-six.vercel.app/user/contact  both ( GET And POST)
+ request>..
+ For POST req>>>>>>>
+ 
+ pass json for example
+  {
+	"contact": ["+69198789789","78978977","9899899",98998799]
+  }
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # FireStore
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
