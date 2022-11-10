@@ -40,8 +40,8 @@ export class ChatWindowComponent implements OnInit {
       setTimeout(() =>{
         let arraylist = [].concat.apply([],this.messagelist)
         this.messagelist = arraylist.sort((a:any,b:any) => a.time_stamp - b.time_stamp);
-        this.socketService.fetchMessages();
-        this.socketService.onFetchMessages().subscribe((data: any) => this.messagelist = data);
+       
+        this.socketService.getNewMessage().subscribe((data: any) => this.messagelist.push(data));
       }, 2000);
   }
   
@@ -89,9 +89,8 @@ receiverData(){
     this.App_service.AdduserDetaialsMessages(messagedata).then((msg_added: any) => {
       if(msg_added){
         this.myForm.reset();
-        this.senderData();
-        this.socketService.fetchMessages();
-        this.socketService.onFetchMessages().subscribe((data: any) => this.messagelist = data);
+        this.messagelist.push(messagedata);
+        this.socketService.sendMessage(messagedata);
       }
     })
   }
