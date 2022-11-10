@@ -32,9 +32,9 @@ export class AppService {
     return await this.FireDatabase.firestore.collection('Users').where('Email', ('=='), Email).get()
   }
 
-  // async getchatdata(uid:string) {
-  //   return await this.FireDatabase.firestore.collection('message').where('uid', ('=='), uid).get()
-  // }
+  async getreceiverprofile(uid:string) {
+    return await this.FireDatabase.firestore.collection('Users').where('uid', ('=='), uid).get()
+  }
 
   async getchatlist(sender_uid:string, receiver_uid: string) {
     return await this.FireDatabase.firestore.collection('message').where('receiver_uid', ('=='), receiver_uid).where('sender_uid', ('=='), sender_uid).get()

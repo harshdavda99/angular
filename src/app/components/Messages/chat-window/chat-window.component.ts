@@ -14,6 +14,7 @@ export class ChatWindowComponent implements OnInit {
   myForm: FormGroup ;
   userid: any;
   messagelist: any [];
+  receiverProfile: any;
 
   constructor(private App_service: AppService, private fb:FormBuilder,  private route : Router, private active: ActivatedRoute) {
     this.myForm = this.fb.group({
@@ -26,17 +27,31 @@ export class ChatWindowComponent implements OnInit {
       this.messagelist = []
       let data = JSON.parse(`${sessionStorage.getItem("userDetails")}`)
       this.userid = data?.uid;
-      console.log(' this.userid',  this.userid)
   }
   get formData(){
     return this.myForm.controls
   }
   ngOnInit(): void {
+    this.getreceiverprofile();
       this.senderData();
       this.receiverData();
+   
       setTimeout(() =>{
-        console.log("messagelist", this.messagelist );
-      }, 3000);
+        let arraylist = [].concat.apply([],this.messagelist)
+        this.messagelist = arraylist.sort((a:any,b:any) => a.time_stamp - b.time_stamp);
+      }, 2000);
+  }
+  
+
+  getreceiverprofile(){
+    this.App_service.getreceiverprofile(this.params.id ).then((res: any) => {
+      let tempDoc = res.docs.map((doc: any) => {
+        return { id: doc.id, ...doc.data() }
+      })
+      if(tempDoc.length){
+         this.receiverProfile = tempDoc[0];
+          }
+    });
   }
 
 senderData(){
