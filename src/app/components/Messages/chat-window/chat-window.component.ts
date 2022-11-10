@@ -36,12 +36,12 @@ export class ChatWindowComponent implements OnInit {
    
       this.senderData();
       this.receiverData();
+      this.socketService.getNewMessage().subscribe((data: any) => console.log('>>>>>>>>>>', data));
    
       setTimeout(() =>{
         let arraylist = [].concat.apply([],this.messagelist)
         this.messagelist = arraylist.sort((a:any,b:any) => a.time_stamp - b.time_stamp);
        
-        this.socketService.getNewMessage().subscribe((data: any) => this.messagelist.push(data));
       }, 2000);
   }
   
@@ -90,7 +90,7 @@ receiverData(){
       if(msg_added){
         this.myForm.reset();
         this.messagelist.push(messagedata);
-        this.socketService.sendMessage(messagedata);
+        // this.socketService.sendMessage(messagedata);
       }
     })
   }

@@ -10,11 +10,11 @@ export class WebsocketService {
   constructor(private socket: Socket) { }
 
   public sendMessage(message: any) {
-    this.socket.emit('message', message);
+    this.socket.emit('data1', message);
   }
 
   public getNewMessage = () => {
-    this.socket.on('message', (message: any) =>{
+    this.socket.on('data1', (message: any) =>{
       this.message$.next(message);
     });
     
