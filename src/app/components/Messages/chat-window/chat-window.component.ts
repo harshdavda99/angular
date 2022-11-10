@@ -33,18 +33,18 @@ export class ChatWindowComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getreceiverprofile();
-   
+
       this.senderData();
       this.receiverData();
-      this.socketService.getNewMessage().subscribe((data: any) => console.log('>>>>>>>>>>', data));
-   
+      this.socketService.getNewMessage().subscribe((data: any) => this.messagelist.push(data));
+
       setTimeout(() =>{
         let arraylist = [].concat.apply([],this.messagelist)
         this.messagelist = arraylist.sort((a:any,b:any) => a.time_stamp - b.time_stamp);
-       
+
       }, 2000);
   }
-  
+
 
   getreceiverprofile(){
     this.App_service.getreceiverprofile(this.params.id ).then((res: any) => {

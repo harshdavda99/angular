@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Socket } from 'ngx-socket-io'; 
+import { Socket } from 'ngx-socket-io';
 import { BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators'; 
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,10 +14,10 @@ export class WebsocketService {
   }
 
   public getNewMessage = () => {
-    this.socket.on('data1', (message: any) =>{
+    this.socket.on('message', (message: any) =>{
       this.message$.next(message);
     });
-    
+
     return this.message$.asObservable();
   };
 }
