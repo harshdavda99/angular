@@ -90,7 +90,7 @@ receiverData(){
       if(msg_added){
         this.myForm.reset();
         this.messagelist.push(messagedata);
-        // this.socketService.sendMessage(messagedata);
+        this.socketService.sendMessage(messagedata);
       }
     })
   }

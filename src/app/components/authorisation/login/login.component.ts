@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,  FormGroup } from '@angular/forms';
 import { AppService} from '../../../app.service'
 import { Router} from '@angular/router'
+import { AuthguardService } from '../../shared/authguard.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,7 +10,7 @@ import { Router} from '@angular/router'
 })
 export class LoginComponent implements OnInit {
   myForm: FormGroup ;
-  constructor(private fb: FormBuilder, private App_service: AppService, private route: Router) {
+  constructor(private fb: FormBuilder, private App_service: AppService, private route: Router ,private authgaurdService:AuthguardService) {
     this.myForm = this.fb.group({
       Email:'',
       Password:'',
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
     this.App_service.LoginUser(this.myForm.controls['Email'].value, this.myForm.controls['Password'].value).then((logres: any) => {
       if(logres?.user?.multiFactor?.user){
         sessionStorage.setItem('accessToken', logres?.user?.multiFactor?.user?.accessToken);
+        this.authgaurdService.acesstokenset(logres?.user?.multiFactor?.user?.accessToken)
         this.App_service.getUser(logres?.user?.multiFactor?.user?.email).then((querySnapshot: any) => {
           const tempDoc = querySnapshot.docs.map((doc: any) => {
             return { id: doc.id, ...doc.data() }
