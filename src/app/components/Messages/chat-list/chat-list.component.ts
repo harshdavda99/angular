@@ -11,14 +11,13 @@ export class ChatListComponent implements OnInit {
   ProfileData: any;
 
   constructor(private App_service: AppService, private route: Router ) {
-    this.getUserList();
     let data = JSON.parse(`${sessionStorage.getItem("userDetails")}`)
     this.ProfileData = data
+    this.getUserList();
   }
 
   ngOnInit(): void {
     this.getUserList();
-    console.log(this.ProfileData)
   }
 
   getUserList(){

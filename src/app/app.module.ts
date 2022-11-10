@@ -16,9 +16,10 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { DashboardContentComponent } from './components/dashboard/dashboard-content/dashboard-content.component';
 
 const config: SocketIoConfig = {
-	url: environment.socket_url, // socket server url;
+	url: environment?.socket_url, // socket server url;
 	options: {
 		transports: ['websocket']
 	}
@@ -31,7 +32,8 @@ const config: SocketIoConfig = {
     RegisterComponent,
     ChatWindowComponent,
     ChatListComponent,
-    DashboardComponent
+    DashboardComponent,
+    DashboardContentComponent
   ],
   imports: [
     BrowserModule,
