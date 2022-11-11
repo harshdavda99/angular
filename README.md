@@ -1,9 +1,9 @@
 here socket io should be run in local using the following git source code. https://github.com/harshdavda99/socketio
-                                                                           npm start
+                       npm start
                                                                            
 and for chatweb vercel link is available >>>>>>  https://angularlivechat.vercel.app/
 
-For nodejs storing data  and getting data from database
+For nodejs storing data  and getting contactlist data from database
 using this URL    >>>> https://nodedemo-six.vercel.app/user/contact  both ( GET And POST)
  request>..
  For POST req>>>>>>>
