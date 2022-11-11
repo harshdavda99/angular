@@ -44,9 +44,10 @@ export class ChatWindowComponent implements OnInit {
     this.senderData();
     this.receiverData();
     this.socketService.getNewMessage().subscribe((data: any) => {
-      console.log(data?.time_stamp)
-      this.messagelist.push(data);
-      return this.scroll(data?.time_stamp);
+      if(data){
+        this.messagelist.push(data);
+        return this.scroll(data?.time_stamp);
+      }
     });
 
     setTimeout(() => {
@@ -54,7 +55,8 @@ export class ChatWindowComponent implements OnInit {
       this.messagelist = arraylist.sort(
         (a: any, b: any) => a.time_stamp - b.time_stamp
       );
-    }, 2000);
+      return this.scroll(this.messagelist[this.messagelist?.length - 1].time_stamp);
+    }, 1500);
   }
 
   getreceiverprofile() {
@@ -95,7 +97,7 @@ export class ChatWindowComponent implements OnInit {
   }
 
   public scroll(time_stamp: any) {
-    let id = `set${time_stamp.toString()}`;
+    let id = `set${time_stamp?.toString()}`;
     if (id) {
       setTimeout(() => {
         let errorField = document.getElementById(`${id}`) || null;
