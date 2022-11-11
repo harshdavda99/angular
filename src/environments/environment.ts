@@ -9,5 +9,5 @@ export const environment = {
     appId: "1:1051728998489:web:aaaa810954d46fc21cc148",
     measurementId: "G-E1VRFPE2JR"
   },
-  socket_url:'http://localhost:3000/'
+  socket_url:'http://localhost:4000/'
 };
