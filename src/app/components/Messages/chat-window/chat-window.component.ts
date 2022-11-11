@@ -78,6 +78,11 @@ receiverData(){
     }
   });
 }
+
+scroll(el: any) {
+  // el.scrollIntoView();
+  // console.log('>>>>>>>>>>', el)
+}
   onSubmit(){
     let date = new Date()
     let messagedata = {
@@ -86,6 +91,7 @@ receiverData(){
       time_stamp: date.getTime(),
       message: this.myForm.controls['message'].value,
     }
+    this.scroll(messagedata.time_stamp);
     this.App_service.AdduserDetaialsMessages(messagedata).then((msg_added: any) => {
       if(msg_added){
         this.myForm.reset();
