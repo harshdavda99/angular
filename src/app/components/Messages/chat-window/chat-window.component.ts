@@ -32,33 +32,38 @@ export class ChatWindowComponent implements OnInit {
     });
     this.params = this.active.snapshot.params;
     this.messagelist = [];
+
     let data = JSON.parse(`${sessionStorage.getItem('userDetails')}`);
     this.userid = data?.uid;
+
   }
   get formData() {
     return this.myForm.controls;
   }
   ngOnInit(): void {
+    this.params = this.active.snapshot.params;
+    if(this.userid &&  this.params ) {
     this.getreceiverprofile();
-
     this.receiverData();
     this.senderData();
     this.socketService.getNewMessage().subscribe((data: any) => {
       if(data){
         this.messagelist.push(data);
+        this.setlist();
         return this.scroll(data?.time_stamp);
       }
     });
+  }
+  }
 
-    setTimeout(() => {
-      let arraylist = [].concat.apply([], this.messagelist);
-      if(arraylist.length){
-        this.messagelist = arraylist.sort(
-          (a: any, b: any) => a.time_stamp - b.time_stamp
-          );
-        }
-      return this.scroll(this.messagelist[this.messagelist?.length - 1]?.time_stamp);
-    }, 1500);
+  setlist (){
+    let arraylist = [].concat.apply([], this.messagelist);
+    if(arraylist.length){
+      this.messagelist = arraylist?.sort(
+        (a: any, b: any) => a.time_stamp - b.time_stamp
+        );
+      }
+    return this.scroll(this.messagelist[this.messagelist?.length - 1]?.time_stamp);
   }
 
   getreceiverprofile() {
@@ -80,22 +85,32 @@ export class ChatWindowComponent implements OnInit {
         });
         if (tempDoc.length) {
           this.messagelist.push(tempDoc);
+          if (this.messagelist.length > 0){
+            this.setlist();
+          }
         }
       }
     );
   }
 
   receiverData() {
-    this.App_service.getchatlist(this.params.id, this.userid).then(
-      (res: any) => {
+
+    if(this.params?.id && this.userid){
+
+      this.App_service.getchatlist(this.params?.id, this.userid).then(
+        (res: any) => {
         let tempDoc = res.docs.map((doc: any) => {
           return { id: doc.id, ...doc.data() };
         });
         if (tempDoc.length) {
           this.messagelist.push(tempDoc);
+          if (this.messagelist.length > 0){
+            this.setlist();
+          }
         }
       }
-    );
+      );
+    }
   }
 
   public scroll(time_stamp: any) {
