@@ -41,8 +41,8 @@ export class ChatWindowComponent implements OnInit {
   ngOnInit(): void {
     this.getreceiverprofile();
 
-    this.senderData();
     this.receiverData();
+    this.senderData();
     this.socketService.getNewMessage().subscribe((data: any) => {
       if(data){
         this.messagelist.push(data);
@@ -52,10 +52,12 @@ export class ChatWindowComponent implements OnInit {
 
     setTimeout(() => {
       let arraylist = [].concat.apply([], this.messagelist);
-      this.messagelist = arraylist.sort(
-        (a: any, b: any) => a.time_stamp - b.time_stamp
-      );
-      return this.scroll(this.messagelist[this.messagelist?.length - 1].time_stamp);
+      if(arraylist.length){
+        this.messagelist = arraylist.sort(
+          (a: any, b: any) => a.time_stamp - b.time_stamp
+          );
+        }
+      return this.scroll(this.messagelist[this.messagelist?.length - 1]?.time_stamp);
     }, 1500);
   }
 
@@ -122,7 +124,7 @@ export class ChatWindowComponent implements OnInit {
           this.myForm.reset();
           this.messagelist.push(messagedata);
           this.socketService.sendMessage(messagedata);
-          this.scroll(messagedata.time_stamp);
+          this.scroll(messagedata?.time_stamp);
         }
       }
     );
