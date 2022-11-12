@@ -20,4 +20,17 @@ export class WebsocketService {
 
     return this.message$.asObservable();
   };
+
+
+  public register(user: any) {
+    this.socket.emit('usersign', user);
+  }
+
+  public getRegisteredUser = () => {
+    this.socket.on('addtocontact', (user: any) =>{
+      this.message$.next(user);
+    });
+
+    return this.message$.asObservable();
+  };
 }

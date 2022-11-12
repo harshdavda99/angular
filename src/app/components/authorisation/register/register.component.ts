@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,  FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { WebsocketService } from 'src/app/websocket.service';
 import { AppService} from '../../../app.service'
 @Component({
   selector: 'app-register',
@@ -10,7 +11,7 @@ import { AppService} from '../../../app.service'
 export class RegisterComponent implements OnInit {
 
   myForm: FormGroup ;
-  constructor(private fb: FormBuilder, private App_service: AppService, private route: Router) {
+  constructor(private fb: FormBuilder, private App_service: AppService, private route: Router,  private socketService: WebsocketService) {
     this.myForm = this.fb.group({
       Email:'',
       Password:'',
@@ -44,6 +45,7 @@ export class RegisterComponent implements OnInit {
             this.App_service.AdduserDetaialsMessages(messagess).then((msg_added: any) => {
               if(msg_added){
                 this.myForm.reset();
+                this.socketService.sendMessage(values);
                 this.route.navigateByUrl('/login')
               }
             })

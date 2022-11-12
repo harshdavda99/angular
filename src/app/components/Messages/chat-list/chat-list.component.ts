@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import { Router } from '@angular/router';
+import { WebsocketService } from 'src/app/websocket.service';
+
 @Component({
   selector: 'app-chat-list',
   templateUrl: './chat-list.component.html',
@@ -10,7 +12,7 @@ export class ChatListComponent implements OnInit {
   userslist: any;
   ProfileData: any;
 
-  constructor(private App_service: AppService, private route: Router ) {
+  constructor(private App_service: AppService, private route: Router,  private socketService: WebsocketService ) {
     let data = JSON.parse(`${sessionStorage.getItem("userDetails")}`)
     this.ProfileData = data
     this.getUserList();
@@ -18,6 +20,11 @@ export class ChatListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserList();
+    this.socketService.getRegisteredUser().subscribe((data: any) => {
+      if(data){
+        this.userslist.push(data);
+      }
+    });
   }
 
   getUserList(){
