@@ -18,5 +18,6 @@ export const environment = {
     appId: "1:733521064944:web:cf3c97be3f95d276db6335",
     measurementId: "G-GVCZ5JLP9F"
   },
-  socket_url:'http://localhost:3000/'
+  // socket_url:'http://localhost:3000/'
+  socket_url:'https://socketioangular.herokuapp.com/'
 };
